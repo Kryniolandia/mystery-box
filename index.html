@@ -321,192 +321,6 @@
   const openBtn = document.getElementById('openBtn');
   const claimBtn = document.getElementById('claimBtn');
   const copyBtn = document.getElementById('copyBtn');
-  const reelStatus = document.getElementById('reelStatus');      radial-gradient(ellipse 700px 400px at 50% 100%, rgba(242,200,75,0.06), transparent 60%),
-      var(--bg);
-  }
-  .noise{
-    position:absolute; inset:0; pointer-events:none; opacity:.035;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .eyebrow{
-    position:absolute; top:38px; left:50%; transform:translateX(-50%);
-    font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.35em;
-    font-size:12px; color:var(--ps-blue); text-transform:uppercase;
-  }
-  .case-title{
-    position:absolute; top:60px; left:50%; transform:translateX(-50%);
-    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:26px;
-    letter-spacing:.04em; color:var(--text);
-  }
-
-  .screen{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; }
-
-  /* ---------- SCREEN 1: CRATE ---------- */
-  .crate-wrap{ display:flex; flex-direction:column; align-items:center; gap:36px; }
-  .crate{ width:230px; height:230px; position:relative; display:flex; align-items:center; justify-content:center; animation: floaty 3.4s ease-in-out infinite; }
-  @keyframes floaty{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-  .crate-glow{ position:absolute; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(47,111,237,0.35), transparent 65%); filter:blur(6px); animation:pulse 2.6s ease-in-out infinite; }
-  @keyframes pulse{ 0%,100%{opacity:.55; transform:scale(1)} 50%{opacity:1; transform:scale(1.08)} }
-  .crate-box{ width:180px; height:180px; position:relative; z-index:2; background:linear-gradient(145deg, #1b2030, #0d0f16); border:1px solid rgba(255,255,255,0.12); border-radius:14px; box-shadow: 0 0 0 1px rgba(47,111,237,0.15), 0 30px 60px -20px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; transform:rotate(45deg); }
-  .crate-box::before{ content:''; position:absolute; inset:14px; border:1px solid rgba(47,111,237,0.35); border-radius:8px; }
-  .crate-mark{ transform:rotate(-45deg); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15px; letter-spacing:.2em; color:var(--ps-blue); text-align:center; line-height:1.5; }
-  .crate-mark span{ display:block; font-size:11px; color:var(--text-dim); letter-spacing:.3em; }
-  .crate-label{ text-align:center; }
-  .crate-label h1{ font-family:'Rajdhani',sans-serif; font-size:22px; font-weight:600; margin:0 0 6px; color:var(--text); }
-  .crate-label p{ margin:0; font-size:13px; color:var(--text-dim); }
-
-  .btn{ font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:16px; padding:14px 46px; border-radius:6px; border:none; cursor:pointer; background:linear-gradient(180deg, #3b7bff, #2159c9); color:#fff; box-shadow:0 10px 28px -8px rgba(47,111,237,0.7), inset 0 1px 0 rgba(255,255,255,0.25); transition:transform .15s ease, box-shadow .15s ease; }
-  .btn:hover{ transform:translateY(-2px); box-shadow:0 14px 34px -8px rgba(47,111,237,0.85), inset 0 1px 0 rgba(255,255,255,0.3); }
-  .btn:active{ transform:translateY(0); }
-  .btn-gold{ background:linear-gradient(180deg,#ffe08a,var(--gold)); color:#241a02; box-shadow:0 10px 28px -8px rgba(242,200,75,0.6), inset 0 1px 0 rgba(255,255,255,0.4); }
-  .btn-gold:hover{ box-shadow:0 14px 34px -8px rgba(242,200,75,0.8), inset 0 1px 0 rgba(255,255,255,0.5); }
-  .btn-ghost{ background:transparent; border:1px solid var(--line); color:var(--text-dim); box-shadow:none; font-size:13px; padding:10px 22px; }
-  .btn-ghost:hover{ color:#fff; border-color:rgba(255,255,255,0.25); transform:none; box-shadow:none; }
-
-  /* ---------- SCREEN 2: REEL ---------- */
-  #screen-reel{ display:none; }
-  .reel-frame{ position:relative; width:min(1000px, 92vw); height:236px; background:var(--panel); border:1px solid var(--line); border-radius:10px; overflow:hidden; box-shadow: inset 0 0 60px rgba(0,0,0,0.6), 0 30px 60px -30px rgba(0,0,0,0.9); }
-  .reel-frame::before, .reel-frame::after{ content:''; position:absolute; top:0; bottom:0; width:120px; z-index:5; pointer-events:none; }
-  .reel-frame::before{ left:0; background:linear-gradient(90deg, var(--panel), transparent); }
-  .reel-frame::after{ right:0; background:linear-gradient(270deg, var(--panel), transparent); }
-  .pointer{ position:absolute; left:50%; top:0; bottom:0; width:2px; transform:translateX(-50%); background:linear-gradient(180deg, var(--gold), rgba(242,200,75,0)); z-index:6; box-shadow:0 0 14px 2px rgba(242,200,75,0.7); }
-  .pointer::before, .pointer::after{ content:''; position:absolute; left:50%; transform:translateX(-50%); border-left:9px solid transparent; border-right:9px solid transparent; }
-  .pointer::before{ top:-1px; border-top:11px solid var(--gold); }
-  .pointer::after{ bottom:-1px; border-bottom:11px solid var(--gold); }
-  .reel-track{ position:absolute; top:16px; left:0; height:204px; display:flex; gap:14px; will-change:transform; transition: transform 5.6s cubic-bezier(0.11, 0.86, 0.15, 1); }
-
-  .item-card{ width:164px; height:204px; flex:0 0 auto; border-radius:8px; border:1px solid var(--line); position:relative; overflow:hidden; }
-  .item-card .poster-bg{ position:absolute; inset:0; width: 100%; height: 100%; object-fit: cover; }
-  .item-card .poster-texture{ position:absolute; inset:0; opacity:.5; mix-blend-mode:overlay; }
-  .item-card .tier-bar{ position:absolute; top:0; left:0; right:0; height:5px; z-index:3; }
-  .item-card .scrim{ position:absolute; left:0; right:0; bottom:0; height:80px; background:linear-gradient(180deg, transparent, rgba(4,5,9,0.98) 60%); z-index:2; }
-  .item-card .card-text{ position:absolute; left:0; right:0; bottom:0; padding:8px 10px 10px; z-index:3; }
-  .item-card .name{ font-size:11px; font-weight:700; text-align:center; line-height:1.3; color:#fff; font-family:'Rajdhani',sans-serif; letter-spacing:.01em; }
-  .item-card .tier-name{ font-size:9px; letter-spacing:.16em; text-transform:uppercase; margin-top:3px; text-align:center; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
-
-  #screen-reel .status{ margin-top:26px; font-family:'Rajdhani',sans-serif; letter-spacing:.1em; font-size:13px; color:var(--text-dim); text-transform:uppercase; }
-
-  /* ---------- SCREEN 3: REVEAL ---------- */
-  #screen-reveal{ display:none; text-align:center; }
-  .reveal-card{ width:290px; margin:0 auto 30px; background:linear-gradient(180deg, #201a08, #0e0c05); border:1px solid rgba(242,200,75,0.4); border-radius:16px; padding:22px 20px 22px; box-shadow: 0 0 0 1px rgba(242,200,75,0.15), 0 0 80px -10px rgba(242,200,75,0.35), 0 40px 70px -30px rgba(0,0,0,0.9); animation: reveal-in .6s cubic-bezier(.2,.9,.25,1); }
-  @keyframes reveal-in{ from{ opacity:0; transform:scale(.7) translateY(20px);} to{opacity:1; transform:scale(1) translateY(0);} }
-  .reveal-art{ width:220px; height:330px; margin:0 auto 18px; border-radius:14px; position:relative; overflow:hidden; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.15), 0 20px 40px -10px rgba(0,0,0,0.6); }
-  .reveal-art .poster-bg{ position:absolute; inset:0; width: 100%; height: 100%; object-fit: cover; }
-  .reveal-art .poster-texture{ position:absolute; inset:0; opacity:.5; mix-blend-mode:overlay; }
-  .reveal-name{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:20px; color:#fff; margin-bottom:4px; }
-  .reveal-tier{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600; }
-
-  /* ---------- SCREEN 4: KEY ---------- */
-  #screen-key{ display:none; text-align:center; }
-  .key-icon{ width:64px; height:64px; margin:0 auto 22px; border-radius:14px; background:linear-gradient(145deg,#ffe08a,var(--gold)); display:flex; align-items:center; justify-content:center; box-shadow:0 0 40px -6px rgba(242,200,75,0.7); animation: reveal-in .5s cubic-bezier(.2,.9,.25,1); }
-  #screen-key h2{ font-family:'Rajdhani',sans-serif; font-weight:500; font-size:16px; color:var(--text-dim); margin:0 0 6px; }
-  #screen-key .game-name{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:24px; color:#fff; margin:0 0 26px; }
-  .key-box{ display:inline-flex; align-items:center; gap:14px; background:var(--panel); border:1px solid rgba(242,200,75,0.35); border-radius:10px; padding:18px 26px; box-shadow: inset 0 0 30px rgba(242,200,75,0.06); }
-  .key-value{ font-family:'JetBrains Mono', monospace; font-size:22px; letter-spacing:.08em; font-weight:700; color:var(--gold); }
-  .copy-btn{ background:rgba(255,255,255,0.06); border:1px solid var(--line); color:var(--text-dim); border-radius:6px; padding:8px 12px; cursor:pointer; font-size:12px; font-family:'Inter',sans-serif; transition:all .15s ease; }
-  .copy-btn:hover{ color:#fff; border-color:rgba(255,255,255,0.3); }
-  #screen-key .actions{ margin-top:30px; }
-
-  .fade-in{ animation:fadein .5s ease both; }
-  @keyframes fadein{ from{opacity:0} to{opacity:1} }
-
-  @media (prefers-reduced-motion: reduce){
-    .crate{ animation:none; }
-    .crate-glow{ animation:none; }
-    .reel-track{ transition-duration: .1s !important; }
-  }
-</style>
-</head>
-<body>
-<div class="stage">
-  <div class="noise"></div>
-  <div class="eyebrow">Vault Drop</div>
-  <div class="case-title">Cyfrowa Skrzynka PS Store</div>
-
-  <div class="screen" id="screen-crate">
-    <div class="crate-wrap">
-      <div class="crate">
-        <div class="crate-glow"></div>
-        <div class="crate-box">
-          <div class="crate-mark">PS<span>VAULT · S1</span></div>
-        </div>
-      </div>
-      <div class="crate-label">
-        <h1>Skrzynka Startowa</h1>
-        <p>Otwórz, aby wylosować grę z kolekcji</p>
-      </div>
-      <button class="btn" id="openBtn">Open</button>
-    </div>
-  </div>
-
-  <div class="screen" id="screen-reel">
-    <div class="reel-frame">
-      <div class="pointer"></div>
-      <div class="reel-track" id="reelTrack"></div>
-    </div>
-    <div class="status" id="reelStatus">Losowanie…</div>
-  </div>
-
-  <div class="screen" id="screen-reveal">
-    <div class="reveal-card">
-      <div class="reveal-art" id="revealArt"></div>
-      <div class="reveal-name" id="revealName">Marvel's Spider-Man Remastered</div>
-      <div class="reveal-tier" id="revealTier">★ Legendary Drop</div>
-    </div>
-    <div>
-      <button class="btn btn-gold" id="claimBtn">Claim</button>
-    </div>
-  </div>
-
-  <div class="screen" id="screen-key">
-    <div class="key-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
-        <path d="M15 7a4 4 0 1 0-3.874 3.999L9 13.13V15h1.87l1.13-1.13V15h2v-2h2v-2h1.13L15 9.87A4.01 4.01 0 0 0 15 7Z" fill="#241a02"/>
-        <circle cx="16" cy="7" r="1.4" fill="#ffe08a"/>
-      </svg>
-    </div>
-    <h2>Twój cyfrowy klucz do</h2>
-    <div class="game-name" id="keyGameName">Spider-Man Remastered</div>
-    <div class="key-box">
-      <div class="key-value" id="keyValue">XXXX-XXXX-XXXX-XXXX</div>
-      <button class="copy-btn" id="copyBtn">Kopiuj</button>
-    </div>
-    <div class="actions">
-      <button class="btn-ghost btn" id="againBtn2">Otwórz kolejną skrzynkę</button>
-    </div>
-  </div>
-
-</div>
-
-<script>
-(function(){
-  const TIERS = {
-    common:      { color: '#5a6a8c', label: 'Common' },
-    restricted:  { color: '#7a5cff', label: 'Restricted' },
-    classified:  { color: '#e14bd8', label: 'Classified' },
-    covert:      { color: '#eb4b4b', label: 'Covert' },
-    legendary:   { color: '#f2c84b', label: 'Legendary' },
-  };
-
-  const POOL = [
-    { name:'Gran Turismo 7', tier:'common', cover:'https://image.api.playstation.com/vulcan/ap/rnd/202109/1321/3mjMyRiJaq8lw1EFWiTCUJRV.png' },
-    { name:'Ratchet & Clank: Rift Apart', tier:'common', cover:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1895880/library_600x900_2x.jpg' },
-    { name:'Returnal', tier:'restricted', cover:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1649240/library_600x900_2x.jpg' },
-    { name:'Horizon Forbidden West', tier:'restricted', cover:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2420110/library_600x900_2x.jpg' },
-    { name:'Ghost of Tsushima', tier:'classified', cover:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/library_600x900_2x.jpg' },
-    { name:"Demon's Souls", tier:'classified', cover:'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/12/mixcollage-25-dec-2024-02-35-am-4828.jpg?q=50&fit=contain&w=480&dpr=1.5' },
-    { name:'God of War Ragnarök', tier:'covert', cover:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/library_600x900_2x.jpg' },
-    { name:"Marvel's Spider-Man Remastered", tier:'legendary', cover:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/library_600x900_2x.jpg' },
-  ];
-
-  const WINNER = POOL[POOL.length - 1];
-  const ITEM_W = 164, GAP = 14, STEP = ITEM_W + GAP;
-
-  const track = document.getElementById('reelTrack');
-  const openBtn = document.getElementById('openBtn');
-  const claimBtn = document.getElementById('claimBtn');
-  const copyBtn = document.getElementById('copyBtn');
-  const againBtn2 = document.getElementById('againBtn2');
   const reelStatus = document.getElementById('reelStatus');
   const keyValue = document.getElementById('keyValue');
   const revealArt = document.getElementById('revealArt');
@@ -601,7 +415,12 @@
     return groups.join('-');
   }
 
-  openBtn.addEventListener('click', spin);
+  openBtn.addEventListener('click', () => {
+    openBtn.disabled = true;
+    openBtn.style.pointerEvents = 'none';
+    openBtn.style.opacity = '0.6';
+    spin();
+  });
 
   claimBtn.addEventListener('click', () => {
     keyValue.textContent = generateKey();
@@ -614,10 +433,6 @@
       setTimeout(() => copyBtn.textContent = 'Kopiuj', 1600);
     }).catch(() => {});
   });
-
-  againBtn2.addEventListener('click', () => showScreen('screen-crate'));
-
-  showScreen('screen-crate');
 })();
 </script>
 </body>
